@@ -6,6 +6,7 @@ import millify from 'millify';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import {useGetCryptoDetailsQuery, useGetCryptoHistoryQuery} from '../services/cryptoApi';
 import LineChart from './LineChart'
+import Loader from './Loader';
 
 const {Title, Text} = Typography;
 const {Option} = Select;
@@ -17,7 +18,7 @@ const CryptoDetails = () => {
     const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod });
     const cryptoDetails = data?.data?.coin;
 
-    if (isFetching) return "Loading..."
+    if (isFetching) return <Loader/>
 
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
@@ -72,11 +73,11 @@ const CryptoDetails = () => {
                     {stats.map(({title, value, icon})=>(
                         <Col className="coin-stats">
                             <Col className="coin-stats-name">
-                                <Title>{icon}</Title>
-                                <Title>{title}</Title>
+                                <Text>{icon}</Text>
+                                <Text>{title}</Text>
 
                             </Col>
-                            <Title className="stats">{value}</Title>
+                            <Text className="stats">{value}</Text>
                         </Col>
                     ))}
                 </Col>
@@ -92,11 +93,11 @@ const CryptoDetails = () => {
                     {genericStats.map(({title, value, icon})=>(
                         <Col className="coin-stats">
                             <Col className="coin-stats-name">
-                                <Title>{icon}</Title>
-                                <Title>{title}</Title>
+                                <Text>{icon}</Text>
+                                <Text>{title}</Text>
 
                             </Col>
-                            <Title className="stats">{value}</Title>
+                            <Text className="stats">{value}</Text>
                         </Col>
                     ))}
                 </Col>
